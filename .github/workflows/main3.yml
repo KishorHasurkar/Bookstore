@@ -21,4 +21,3 @@ jobs:
           cx_client_id: ${{ secrets.CLIENT_ID }}
           cx_client_secret: ${{ secrets.SECRET }}
           branch: master
-          additonal_params: --sast-presetname "Owasp top 10"
