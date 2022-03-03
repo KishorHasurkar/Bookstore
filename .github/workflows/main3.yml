@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Checkmarx AST CLI Action
-        uses: checkmarxDev/ast-github-action@2.0.1 #Github Action version
+        uses: checkmarxDev/ast-github-action@2.0.3 #Github Action version
         with:
           project_name: KHTestGitHubAction
           cx_tenant: dp_wp_account
