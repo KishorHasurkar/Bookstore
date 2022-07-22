@@ -1,0 +1,31 @@
+image:
+  name: atlassian/default-image:2
+pipelines:
+  default:
+  - step:
+      name: Checkmarx SAST Scan
+      script:
+        - docker run
+          -v $BITBUCKET_CLONE_DIR:/code
+          checkmarx/cx-flow:$CX_FLOW_VERSION
+          --scan
+          --f=/code
+          --app=$BITBUCKET_REPO_SLUG
+          --cx-project=$BITBUCKET_REPO_SLUG
+          --repo-name=$BITBUCKET_REPO_SLUG
+          --namespace=$BITBUCKET_REPO_SLUG
+          --branch=$BITBUCKET_BRANCH
+          --cx-flow.bug-tracker=$CX_BUG_TRACKER
+          --cx-flow.bug-tracker-impl=$CX_BUG_TRACKER
+          --cx-flow.enabled-vulnerability-scanners=sast
+          --checkmarx.version=$CX_VERSION
+          --checkmarx.client-id=$CX_CLIENT_ID
+          --checkmarx.client-secret=$CX_CLIENT_SECRET
+          --checkmarx.scope="$CX_SCOPE"
+          --checkmarx.base-url=$CX_SERVER
+          --checkmarx.team=$CX_TEAM
+          --checkmarx.username=$CX_USERNAME
+          --checkmarx.password=$CX_PASSWORD
+          --checkmarx.multi-tenant=$CX_IS_MULTI_TENANT
+      services:
+      - docker
